@@ -1,5 +1,9 @@
 # weather
 
+## Demo
+
+https://voluble-palmier-e69564.netlify.app/
+
 ## Project setup
 ```
 npm install
@@ -15,10 +19,7 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Compile web-component
 ```
-npm run lint
+npm run wc
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
