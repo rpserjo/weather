@@ -16,7 +16,7 @@ import { defineComponent } from 'vue';
 import LocationComponent from '@/components/LocationComponent.vue';
 import IconsUIComponent from '@/components/IconsUIComponent.vue';
 import SettingsComponent from '@/components/SettingsComponent.vue';
-import {getWeather} from '@/http';
+import {detectLocation} from '@/http';
 
 export default defineComponent({
   name: 'App',
@@ -38,16 +38,18 @@ export default defineComponent({
   methods: {
     detectCurrentPosition(){
       const onSuccess = async (position: GeolocationPosition) => {
-        const location = await getWeather(position.coords.latitude, position.coords.longitude);
-        if(location && location.name){
+        const location = await detectLocation(position.coords.latitude, position.coords.longitude);
+        if(location && location.length > 0 && location[0].name){
           this.savedLocations.push({
-            locationName: location.name,
-            locationCountryCode: location.sys.country,
+            locationName: location[0].name,
+            locationCountryCode: location[0].country,
             locationCoords: {
-              latitude: location.coord.lat,
-              longitude: location.coord.lon
+              latitude: location[0].lat,
+              longitude: location[0].lon
             }
           });
+        }else{
+				alert('Location is not detected');        
         }
       }
 

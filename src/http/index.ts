@@ -7,6 +7,14 @@ const apiHost = axios.create({
     }
 });
 
+const detectLocation = async (lat: number, lon: number) => {
+    const {data} = await apiHost.get('geo/1.0/reverse', {params: {
+            lat: lat,
+            lon: lon
+        }});
+    return data;
+}
+
 const getWeather = async (lat: number, lon: number) => {
     const {data} = await apiHost.get('data/2.5/weather', {params: {
             lat: lat,
@@ -22,6 +30,7 @@ const searchLocation = async (searchQuery: string) => {
 }
 
 export {
+    detectLocation,
     getWeather,
     searchLocation
 }
