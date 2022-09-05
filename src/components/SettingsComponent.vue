@@ -63,28 +63,29 @@ export default defineComponent({
   },
   methods: {
     async search() {
-      this.isLoading = true;
-      this.isError = false;
-      try{
-        const data = await searchLocation(this.searchQuery);
-        if(data && data.length > 0) {
-          this.searchResults = data.map((result: any) => {
-            return {
-              locationName: result.name,
-              locationCountryCode: result.country,
-              locationCoords: {
-                latitude: result.lat,
-                longitude: result.lon
-              }
-            }
-          });
-        }
-      }catch(e){
-        this.isError = true;
-      }finally{
-        this.isLoading = false;
-      }
-
+		if(this.searchQuery.length > 0){
+			this.isLoading = true;
+			this.isError = false;
+			try{
+				const data = await searchLocation(this.searchQuery);
+				if(data && data.length > 0) {
+					this.searchResults = data.map((result: any) => {
+						return {
+							locationName: result.name,
+							locationCountryCode: result.country,
+							locationCoords: {
+								latitude: result.lat,
+								longitude: result.lon
+							}
+						}
+					});
+				}
+			}catch(e){
+				this.isError = true;
+			}finally{
+				this.isLoading = false;
+			}
+		}
     },
     pushLocation(location: SavedLocation): void{
       const filtered = this.modelValue.filter((element: any) => {
