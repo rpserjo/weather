@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import {defineComponent} from "vue";
+import {defineComponent} from 'vue';
 import {compassPoints, weatherDescription, distance, dewPoint} from '@/helpers'
-import {getWeather} from "@/http";
-import IconsUIComponent from "@/components/IconsUIComponent";
-import SpinnerUIComponent from "@/components/SpinnerUIComponent";
+import {getWeather} from '@/http';
+import IconsUIComponent from '@/components/IconsUIComponent';
+import SpinnerUIComponent from '@/components/SpinnerUIComponent';
 
 export default defineComponent( {
   name: 'LocationComponent',

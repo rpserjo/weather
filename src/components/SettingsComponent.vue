@@ -34,12 +34,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent} from 'vue';
 import {searchLocation} from '@/http';
 import {VueDraggableNext} from 'vue-draggable-next';
-import IconUIComponent from "@/components/IconsUIComponent.vue";
-import SpinnerUIComponent from "@/components/SpinnerUIComponent.vue";
-import {SavedLocation} from "@/types";
+import IconUIComponent from '@/components/IconsUIComponent.vue';
+import SpinnerUIComponent from '@/components/SpinnerUIComponent.vue';
+import {SavedLocation} from '@/types';
 
 export default defineComponent({
   components: {

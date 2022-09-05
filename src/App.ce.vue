@@ -13,10 +13,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LocationComponent from "@/components/LocationComponent.vue";
-import IconsUIComponent from "@/components/IconsUIComponent.vue";
-import SettingsComponent from "@/components/SettingsComponent.vue";
-import {getWeather} from "@/http";
+import LocationComponent from '@/components/LocationComponent.vue';
+import IconsUIComponent from '@/components/IconsUIComponent.vue';
+import SettingsComponent from '@/components/SettingsComponent.vue';
+import {getWeather} from '@/http';
 
 export default defineComponent({
   name: 'App',
@@ -30,15 +30,13 @@ export default defineComponent({
   },
   data() {
     return {
-      savedLocations: JSON.parse(localStorage.getItem('savedLocations') || '[]'),
+      savedLocations: JSON.parse(localStorage.getItem(process.env.VUE_APP_LOCALSTORAGE_KEY) || '[]'),
       showSettings: false,
-      weathers: [],
-      test: 'Test'
+      weathers: []
     }
   },
   methods: {
     detectCurrentPosition(){
-
       const onSuccess = async (position: GeolocationPosition) => {
         const location = await getWeather(position.coords.latitude, position.coords.longitude);
         if(location && location.name){
@@ -61,7 +59,7 @@ export default defineComponent({
     },
 
     saveLocations(){
-      localStorage.setItem('savedLocations', JSON.stringify(this.savedLocations));
+      localStorage.setItem(process.env.VUE_APP_LOCALSTORAGE_KEY, JSON.stringify(this.savedLocations));
     }
   },
   mounted() {
@@ -82,7 +80,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style lang="scss">
-@import "./assets/scss/style.scss";
-</style>
